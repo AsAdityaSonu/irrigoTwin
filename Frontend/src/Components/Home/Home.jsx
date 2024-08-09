@@ -64,23 +64,16 @@ function Home() {
                       <p className="text-sm text-lime-800">
                         Weather: {weather.weather[0].description}
                       </p>
-                      <p className="text-sm text-lime-800">
-                        Humidity: {weather.main.humidity}%
-                      </p>
-                      <p className="text-sm text-lime-800">
-                        Pressure: {weather.main.pressure} hPa
-                      </p>
-                      <p className="text-sm text-lime-800">
-                        Temperature: {weather.main.temp}°C
-                      </p>
                     </div>
                   )}
                 </div>
                 {/* Right Box (50%) */}
                 <div className="col-span-5 bg-amber-100 rounded-lg shadow-md p-4 h-full">
-                  <p className="text-sm font-medium text-amber-800">
-                    Right Box
-                  </p>
+                  {weather && (
+                    <p className="text-sm font-medium text-amber-800">
+                      Temperature: {(weather.main.temp - 273.15).toFixed(2)}°C
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -92,11 +85,11 @@ function Home() {
         </div>
 
         <div className="flex items-center justify-center h-48 mb-6 rounded-lg bg-gradient-to-r from-pink-100 to-pink-200 shadow-md">
-          <p className="text-2xl font-semibold text-pink-800">Hello Hi 1</p>
+          {/* <p className="text-2xl font-semibold text-pink-800">Humidity: {weather.main.humidity}%</p> */}
         </div>
         <div className="grid grid-cols-2 gap-6 mb-6">
           <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-fuchsia-100 to-fuchsia-200 shadow-md">
-            <p className="text-2xl font-semibold text-fuchsia-800">Hi 4</p>
+            {/* <p className="text-2xl font-semibold text-fuchsia-800">Pressure: {(weather.main.pressure * 0.000986923).toFixed(2)} atm</p> */}
           </div>
           <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-cyan-100 to-cyan-200 shadow-md">
             <p className="text-2xl font-semibold text-cyan-800">Hi 5</p>

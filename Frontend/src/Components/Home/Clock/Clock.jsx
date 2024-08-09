@@ -7,7 +7,9 @@ const Clock = () => {
     secondAngle: 0,
   });
 
-  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
+  const [currentTime, setCurrentTime] = useState(
+    new Date().toLocaleTimeString()
+  );
   const [date, setDate] = useState(new Date().toLocaleDateString());
 
   useEffect(() => {
@@ -17,9 +19,9 @@ const Clock = () => {
       const minutes = now.getMinutes();
       const seconds = now.getSeconds();
 
-      const hourAngle = (hours % 12) * 30 + minutes * 0.5; 
-      const minuteAngle = minutes * 6 + seconds * 0.1; 
-      const secondAngle = seconds * 6; 
+      const hourAngle = (hours % 12) * 30 + minutes * 0.5;
+      const minuteAngle = minutes * 6 + seconds * 0.1;
+      const secondAngle = seconds * 6;
 
       setTimeAngles({
         hourAngle,
@@ -34,7 +36,7 @@ const Clock = () => {
     updateClock();
     const interval = setInterval(updateClock, 1000);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, []);
 
   return (
