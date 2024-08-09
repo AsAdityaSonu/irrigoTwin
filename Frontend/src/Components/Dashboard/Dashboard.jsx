@@ -1,4 +1,5 @@
 import React from "react";
+import Clock from "../Home/Clock/Clock";
 
 function Dashboard() {
   return (
@@ -34,7 +35,7 @@ function Dashboard() {
               <div className="flex flex-col items-start p-4 h-20 rounded-lg bg-gradient-to-r from-sky-100 to-sky-200 shadow-md w-full">
                 <p className="text-2xl font-bold text-sky-800">DASHBOARD</p>
                 <p className="text-xs text-sky-600 font-medium">
-                  Real Time Weather Data
+                  Real Time Data
                 </p>
               </div>
               {/* New Boxes */}
@@ -52,8 +53,8 @@ function Dashboard() {
               </div>
             </div>
             {/* Right Box (40%) */}
-            <div className="col-span-4 bg-rose-100 rounded-lg shadow-md p-4 h-full">
-              <p className="text-sm font-medium text-rose-800">Right Box</p>
+            <div className="col-span-4 bg-rose-100 rounded-lg shadow-md h-full">
+              <Clock />
             </div>
           </div>
         </div>

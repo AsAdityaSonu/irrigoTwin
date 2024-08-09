@@ -38,7 +38,7 @@ const Clock = () => {
   }, []);
 
   return (
-    <div className="col-span-4 bg-rose-100 rounded-lg shadow-md h-full flex items-center justify-center">
+    <div className="col-span-4 bg-rose-100 rounded-lg shadow-md p-4 h-full flex items-center justify-center">
       <div className="text-center">
         <div className="flex justify-center items-center mb-4">
           <svg className="w-24 h-24" viewBox="0 0 100 100">
@@ -102,10 +102,12 @@ const Clock = () => {
             />
           </svg>
         </div>
-        <p className="text-6xl font-extrabold text-rose-800 mt-5">
-          {currentTime}
-        <p className="text-4xl font-bold mt-5 text-rose-800">{date}</p>
-        </p>
+        <div>
+          <p className="text-4xl font-bold text-rose-800">{date}</p>
+          <p className="text-6xl font-extrabold text-rose-800 mt-2">
+            {currentTime}
+          </p>
+        </div>
       </div>
     </div>
   );
