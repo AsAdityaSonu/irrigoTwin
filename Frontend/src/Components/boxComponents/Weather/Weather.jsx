@@ -29,7 +29,7 @@ function Weather({ weather }) {
             alt="Weather Condition"
             className="mx-auto my-4 w-40 h-40"
           />
-          <p className="text-xl text-yellow-800 font-bold">
+          <p className="text-xl text-orange-800 font-bold">
             {weather
               ? weather.weather[0].description
                   .split(" ")

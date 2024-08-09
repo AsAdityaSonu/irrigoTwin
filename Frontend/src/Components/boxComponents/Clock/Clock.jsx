@@ -40,7 +40,7 @@ const Clock = () => {
   }, []);
 
   return (
-    <div className="col-span-4 bg-rose-100 rounded-lg shadow-md p-4 h-full flex items-center justify-center">
+    <div className="col-span-4 bg-gradient-to-r from-rose-100 to-rose-200 rounded-lg shadow-md p-4 h-full flex items-center justify-center">
       <div className="text-center">
         <div className="flex justify-center items-center mb-4">
           <svg className="w-24 h-24" viewBox="0 0 100 100">
