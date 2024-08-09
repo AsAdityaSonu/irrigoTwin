@@ -21,7 +21,7 @@ const getWeatherIcon = (weatherMain) => {
 
 function Weather({ weather }) {
   return (
-    <div className="col-span-5 w-full bg-lime-100 rounded-lg shadow-md p-6 h-full flex flex-col items-center justify-center">
+    <div >
       {weather && (
         <div className="text-center">
           <img

@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Clock from "../boxComponents/Clock/Clock";
 import Weather from "../boxComponents/Weather/Weather";
+import Temperature from "../boxComponents/Temperature/Temperature";
 
 const api = {
   key: "6594d3b53c14c75c84b2f1a80e320763",
@@ -39,7 +40,7 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:ml-64">
-      <div className="p-4 border-2 border-gray-200 border-e rounded-lg shadow-lg bg-white">
+      <div className="p-4 border-2 border-gray-50 border-e rounded-lg shadow-lg bg-gray-50">
         <div className="flex items-center justify-center h-96 mb-6 rounded-lg bg-white">
           <div className="grid grid-cols-10 gap-4 w-full h-full">
             {/* Left Box (60%) */}
@@ -59,17 +60,13 @@ function Home() {
               {/* New Boxes */}
               <div className="flex-1 grid grid-cols-10 gap-4 w-full">
                 {/* Left Box (50%) */}
-                <div className="col-span-5 bg-yellow-100 rounded-2xl shadow-md h-full flex flex-col items-center justify-center">
+                <div className="col-span-5 w-full bg-lime-100 rounded-lg shadow-md p-6 h-full flex flex-col items-center justify-center">
                   <Weather weather={weather} />
                 </div>
 
                 {/* Right Box (50%) */}
                 <div className="col-span-5 bg-green-100 rounded-lg shadow-md p-4 h-full">
-                  {weather && (
-                    <p className="text-sm font-medium text-green-800">
-                      Temperature: {(weather.main.temp - 273.15).toFixed(2)}°C
-                    </p>
-                  )}
+                  <Temperature weather={weather} />
                 </div>
               </div>
             </div>
