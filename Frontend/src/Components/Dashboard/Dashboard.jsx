@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Clock from "../boxComponents/Clock/Clock";
 import Weather from "../boxComponents/Weather/Weather";
 import Temperature from "../boxComponents/Temperature/Temperature";
+import TempHumidity from "../boxComponents/TempHumidity/TempHumidity";
+import WindAir from "../boxComponents/WindAir/WindAir";
 
 const api = {
   key: "6594d3b53c14c75c84b2f1a80e320763",
@@ -59,51 +61,26 @@ function Dashboard() {
               {/* New Boxes */}
               <div className="flex-1 grid grid-cols-10 gap-4 w-full">
                 {/* Left Box (50%) */}
-                <div className="col-span-5 w-full bg-lime-100 rounded-lg shadow-md p-6 h-full flex flex-col items-center justify-center">
+                <div className="col-span-5 w-full bg-gradient-to-r from-orange-100 to-orange-200 rounded-lg shadow-md p-6 h-full flex flex-col items-center justify-center">
                   <Weather weather={weather} />
                 </div>
 
                 {/* Right Box (50%) */}
-                <div className="col-span-5 bg-green-100 rounded-lg shadow-md p-4 h-full">
+                <div className="col-span-5 bg-gradient-to-r from-green-100 to-green-200 rounded-lg shadow-md p-4 h-full">
                   <Temperature weather={weather} />
                 </div>
               </div>
             </div>
             {/* Right Box (40%) */}
-            <div className="col-span-4 bg-rose-100 rounded-lg shadow-md h-full ">
+            <div className="col-span-4 rounded-lg shadow-md h-full">
               <Clock />
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center h-96 mb-4 rounded-lg bg-gradient-to-r from-pink-100 to-pink-200 shadow-md p-4">
-          {weather && (
-            <div>
-              <p className="text-2xl font-semibold text-pink-800">
-                Max Temperature: {(weather.main.temp_max - 273.15).toFixed(2)}°C
-              </p>
-              <p className="text-2xl font-semibold text-pink-800">
-                Min Temperature: {(weather.main.temp_min - 273.15).toFixed(2)}°C
-              </p>
-              <p className="text-2xl font-semibold text-pink-800">
-                Humidity: {weather.main.humidity}%
-              </p>
-            </div>
-          )}
-        </div>
-
-        <div className="grid grid-cols-2 gap-6">
-          {/* <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-teal-100 to-teal-200 shadow-md">
-            <p className="text-2xl font-semibold text-pink-800">
-              Wind Speed: {weather.wind.speed}m/s
-            </p>
-          </div> */}
-
-          {/* <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-orange-100 to-orange-200 shadow-md">
-          <p className="text-2xl font-semibold text-pink-800">
-                Air Pressure: {weather.main.pressure} millibars
-              </p>
-          </div> */}
+        <div>
+          <TempHumidity weather={weather} />
+          <WindAir weather={weather} />
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import Clock from "../boxComponents/Clock/Clock";
 import Weather from "../boxComponents/Weather/Weather";
 import Temperature from "../boxComponents/Temperature/Temperature";
 import TempHumidity from "../boxComponents/TempHumidity/TempHumidity";
+import WindAir from "../boxComponents/WindAir/WindAir";
 
 const api = {
   key: "6594d3b53c14c75c84b2f1a80e320763",
@@ -79,20 +80,7 @@ function Home() {
 
         <div>
           <TempHumidity weather={weather} />
-        </div>
-
-        <div className="grid grid-cols-2 gap-6">
-          <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-teal-100 to-teal-200 shadow-md">
-            <p className="text-2xl font-semibold text-teal-800">
-              {/* Wind Speed: {weather.wind.speed}m/s */}
-            </p>
-          </div>
-
-          <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-orange-100 to-orange-200 shadow-md">
-            <p className="text-2xl font-semibold text-pink-800">
-              {/* Air Pressure: {weather.main.pressure} millibars */}
-            </p>
-          </div>
+          <WindAir weather={weather} />
         </div>
       </div>
     </div>
