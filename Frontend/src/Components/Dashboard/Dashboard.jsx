@@ -1,5 +1,5 @@
 import React from "react";
-import Clock from "../Home/Clock/Clock";
+import Clock from "../boxComponents/Clock/Clock";
 
 function Dashboard() {
   return (

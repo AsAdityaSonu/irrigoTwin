@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Clock from "./Clock/Clock";
+import Clock from "../boxComponents/Clock/Clock";
+import Weather from "../boxComponents/Weather/Weather";
 
 const api = {
   key: "6594d3b53c14c75c84b2f1a80e320763",
@@ -54,23 +55,18 @@ function Home() {
                   </p>
                 </div>
               </div>
+
               {/* New Boxes */}
               <div className="flex-1 grid grid-cols-10 gap-4 w-full">
                 {/* Left Box (50%) */}
-                <div className="col-span-5 bg-lime-100 rounded-lg shadow-md p-4 h-full">
-                  <p className="text-sm font-medium text-lime-800">Left Box</p>
-                  {weather && (
-                    <div>
-                      <p className="text-sm text-lime-800">
-                        Weather: {weather.weather[0].description}
-                      </p>
-                    </div>
-                  )}
+                <div className="col-span-5 bg-yellow-100 rounded-2xl shadow-md h-full flex flex-col items-center justify-center">
+                  <Weather weather={weather} />
                 </div>
+
                 {/* Right Box (50%) */}
-                <div className="col-span-5 bg-amber-100 rounded-lg shadow-md p-4 h-full">
+                <div className="col-span-5 bg-green-100 rounded-lg shadow-md p-4 h-full">
                   {weather && (
-                    <p className="text-sm font-medium text-amber-800">
+                    <p className="text-sm font-medium text-green-800">
                       Temperature: {(weather.main.temp - 273.15).toFixed(2)}°C
                     </p>
                   )}
@@ -91,17 +87,21 @@ function Home() {
           <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-fuchsia-100 to-fuchsia-200 shadow-md">
             {/* <p className="text-2xl font-semibold text-fuchsia-800">Pressure: {(weather.main.pressure * 0.000986923).toFixed(2)} atm</p> */}
           </div>
+
           <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-cyan-100 to-cyan-200 shadow-md">
             <p className="text-2xl font-semibold text-cyan-800">Hi 5</p>
           </div>
         </div>
+
         <div className="flex items-center justify-center h-48 mb-6 rounded-lg bg-gradient-to-r from-lime-100 to-lime-200 shadow-md">
           <p className="text-2xl font-semibold text-lime-800">Aaye haye</p>
         </div>
+
         <div className="grid grid-cols-2 gap-6">
           <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-teal-100 to-teal-200 shadow-md">
             <p className="text-2xl font-semibold text-teal-800">oye hoi</p>
           </div>
+
           <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-orange-100 to-orange-200 shadow-md">
             <p className="text-2xl font-semibold text-orange-800">bado badi</p>
           </div>
