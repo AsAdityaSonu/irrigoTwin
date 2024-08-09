@@ -16,7 +16,6 @@ function Home() {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        // console.log(position);
         const { latitude, longitude } = position.coords;
 
         fetch(
@@ -39,7 +38,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 sm:ml-64">
+    <div className="min-h-screen min-w-[730px] bg-gray-50 p-4 sm:ml-64">
       <div className="p-4 border-2 border-gray-50 border-e rounded-lg shadow-lg bg-gray-50">
         <div className="flex items-center justify-center h-96 mb-6 rounded-lg bg-white">
           <div className="grid grid-cols-10 gap-4 w-full h-full">
@@ -79,19 +78,6 @@ function Home() {
 
         <div className="flex items-center justify-center h-48 mb-6 rounded-lg bg-gradient-to-r from-pink-100 to-pink-200 shadow-md">
           {/* <p className="text-2xl font-semibold text-pink-800">Humidity: {weather.main.humidity}%</p> */}
-        </div>
-        <div className="grid grid-cols-2 gap-6 mb-6">
-          <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-fuchsia-100 to-fuchsia-200 shadow-md">
-            {/* <p className="text-2xl font-semibold text-fuchsia-800">Pressure: {(weather.main.pressure * 0.000986923).toFixed(2)} atm</p> */}
-          </div>
-
-          <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-cyan-100 to-cyan-200 shadow-md">
-            <p className="text-2xl font-semibold text-cyan-800">Hi 5</p>
-          </div>
-        </div>
-
-        <div className="flex items-center justify-center h-48 mb-6 rounded-lg bg-gradient-to-r from-lime-100 to-lime-200 shadow-md">
-          <p className="text-2xl font-semibold text-lime-800">Aaye haye</p>
         </div>
 
         <div className="grid grid-cols-2 gap-6">
