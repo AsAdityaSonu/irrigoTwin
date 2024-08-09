@@ -1,0 +1,18 @@
+@keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .animate-hour-hand {
+    animation: rotate 43200s linear infinite; 
+  }
+  
+  .animate-minute-hand {
+    animation: rotate 3600s linear infinite; 
+  }
+  
+  .animate-second-hand {
+    animation: rotate 60s linear infinite; 
+  }
+  

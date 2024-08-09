@@ -1,6 +1,10 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import Clock from "./Clock/Clock";
 
 function Home() {
+  const [location, setLocation] = useState(null);
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:ml-64">
       <div className="p-4 border-2 border-gray-200 border-e rounded-lg shadow-lg bg-white">
@@ -29,8 +33,8 @@ function Home() {
               </div>
             </div>
             {/* Right Box (40%) */}
-            <div className="col-span-4 bg-rose-100 rounded-lg shadow-md p-4 h-full">
-              <p className="text-sm font-medium text-rose-800">Right Box</p>
+            <div className="col-span-4 bg-rose-100 rounded-lg shadow-md h-full">
+              <Clock />
             </div>
           </div>
         </div>
