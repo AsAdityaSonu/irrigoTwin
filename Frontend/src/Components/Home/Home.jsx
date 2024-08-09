@@ -70,24 +70,40 @@ function Home() {
               </div>
             </div>
             {/* Right Box (40%) */}
-            <div className="col-span-4 bg-rose-100 rounded-lg shadow-md h-full">
+            <div className="col-span-4 bg-rose-100 rounded-lg shadow-md h-full ">
               <Clock />
             </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-center h-48 mb-6 rounded-lg bg-gradient-to-r from-pink-100 to-pink-200 shadow-md">
-          {/* <p className="text-2xl font-semibold text-pink-800">Humidity: {weather.main.humidity}%</p> */}
+        <div className="flex flex-col items-center justify-center h-96 mb-4 rounded-lg bg-gradient-to-r from-pink-100 to-pink-200 shadow-md p-4">
+          {weather && (
+            <div>
+              <p className="text-2xl font-semibold text-pink-800">
+                Max Temperature: {(weather.main.temp_max - 273.15).toFixed(2)}°C
+              </p>
+              <p className="text-2xl font-semibold text-pink-800">
+                Min Temperature: {(weather.main.temp_min - 273.15).toFixed(2)}°C
+              </p>
+              <p className="text-2xl font-semibold text-pink-800">
+                Humidity: {weather.main.humidity}%
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-2 gap-6">
-          <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-teal-100 to-teal-200 shadow-md">
-            <p className="text-2xl font-semibold text-teal-800">oye hoi</p>
-          </div>
+          {/* <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-teal-100 to-teal-200 shadow-md">
+            <p className="text-2xl font-semibold text-pink-800">
+              Wind Speed: {weather.wind.speed}m/s
+            </p>
+          </div> */}
 
-          <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-orange-100 to-orange-200 shadow-md">
-            <p className="text-2xl font-semibold text-orange-800">bado badi</p>
-          </div>
+          {/* <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-orange-100 to-orange-200 shadow-md">
+          <p className="text-2xl font-semibold text-pink-800">
+                Air Pressure: {weather.main.pressure} millibars
+              </p>
+          </div> */}
         </div>
       </div>
     </div>

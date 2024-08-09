@@ -9,7 +9,7 @@ const api = {
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
-function Home() {
+function Dashboard() {
   const [location, setLocation] = useState("Fetching location...");
   const [weather, setWeather] = useState(null);
 
@@ -45,10 +45,10 @@ function Home() {
             {/* Left Box (60%) */}
             <div className="col-span-6 flex flex-col gap-4 mb-6 h-full">
               <div className="flex flex-col items-start p-4 h-20 rounded-lg bg-gradient-to-r from-sky-100 to-sky-200 shadow-md w-full">
-                <p className="text-2xl font-bold text-sky-800">HOME</p>
+                <p className="text-2xl font-bold text-sky-800">DASHBOARD</p>
                 <div className="flex justify-between w-full">
                   <p className="text-xs text-sky-600 font-medium">
-                    Powered by Openweather Map
+                    Realtime Data
                   </p>
                   <p className=" text-base text-sky-600 font-medium">
                     {location}
@@ -70,28 +70,44 @@ function Home() {
               </div>
             </div>
             {/* Right Box (40%) */}
-            <div className="col-span-4 bg-rose-100 rounded-lg shadow-md h-full">
+            <div className="col-span-4 bg-rose-100 rounded-lg shadow-md h-full ">
               <Clock />
             </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-center h-48 mb-6 rounded-lg bg-gradient-to-r from-pink-100 to-pink-200 shadow-md">
-          {/* <p className="text-2xl font-semibold text-pink-800">Humidity: {weather.main.humidity}%</p> */}
+        <div className="flex flex-col items-center justify-center h-96 mb-4 rounded-lg bg-gradient-to-r from-pink-100 to-pink-200 shadow-md p-4">
+          {weather && (
+            <div>
+              <p className="text-2xl font-semibold text-pink-800">
+                Max Temperature: {(weather.main.temp_max - 273.15).toFixed(2)}°C
+              </p>
+              <p className="text-2xl font-semibold text-pink-800">
+                Min Temperature: {(weather.main.temp_min - 273.15).toFixed(2)}°C
+              </p>
+              <p className="text-2xl font-semibold text-pink-800">
+                Humidity: {weather.main.humidity}%
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-2 gap-6">
-          <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-teal-100 to-teal-200 shadow-md">
-            <p className="text-2xl font-semibold text-teal-800">oye hoi</p>
-          </div>
+          {/* <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-teal-100 to-teal-200 shadow-md">
+            <p className="text-2xl font-semibold text-pink-800">
+              Wind Speed: {weather.wind.speed}m/s
+            </p>
+          </div> */}
 
-          <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-orange-100 to-orange-200 shadow-md">
-            <p className="text-2xl font-semibold text-orange-800">bado badi</p>
-          </div>
+          {/* <div className="flex items-center justify-center h-28 rounded-lg bg-gradient-to-r from-orange-100 to-orange-200 shadow-md">
+          <p className="text-2xl font-semibold text-pink-800">
+                Air Pressure: {weather.main.pressure} millibars
+              </p>
+          </div> */}
         </div>
       </div>
     </div>
   );
 }
 
-export default Home;
+export default Dashboard;

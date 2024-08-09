@@ -26,7 +26,7 @@ function Weather({ weather }) {
         <div className="text-center">
           <img
             src={getWeatherIcon(weather.weather[0].main)}
-            alt="Weather Icon"
+            alt="Weather Condition"
             className="mx-auto my-4 w-40 h-40"
           />
           <p className="text-xl text-yellow-800 font-bold">
