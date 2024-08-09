@@ -1,40 +1,17 @@
 import React from "react";
 
-function Dashboard() {
+function Home() {
   return (
-    <div className="min-h-screen bg-gray-100 p-4 sm:ml-64">
-      <button
-        data-drawer-target="logo-sidebar"
-        data-drawer-toggle="logo-sidebar"
-        aria-controls="logo-sidebar"
-        type="button"
-        className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300"
-      >
-        <span className="sr-only">Open sidebar</span>
-        <svg
-          className="w-6 h-6"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            clipRule="evenodd"
-            fillRule="evenodd"
-            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-          ></path>
-        </svg>
-      </button>
-
+    <div className="min-h-screen bg-gray-50 p-4 sm:ml-64">
       <div className="p-4 border-2 border-gray-200 border-e rounded-lg shadow-lg bg-white">
         <div className="flex items-center justify-center h-96 mb-6 rounded-lg bg-white">
           <div className="grid grid-cols-10 gap-4 w-full h-full">
             {/* Left Box (60%) */}
             <div className="col-span-6 flex flex-col gap-4 mb-6 h-full">
               <div className="flex flex-col items-start p-4 h-20 rounded-lg bg-gradient-to-r from-sky-100 to-sky-200 shadow-md w-full">
-                <p className="text-2xl font-bold text-sky-800">DASHBOARD</p>
+                <p className="text-2xl font-bold text-sky-800">HOME</p>
                 <p className="text-xs text-sky-600 font-medium">
-                  Real Time Weather Data
+                  Powered by Openweather Map
                 </p>
               </div>
               {/* New Boxes */}
@@ -85,4 +62,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Home;

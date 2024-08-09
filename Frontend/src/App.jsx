@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LeftPanel from "./Components/LeftPanel/LeftPanel";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import Home from "./Components/Home/Home";
 import About from "./Components/About/About";
 
 function App() {
@@ -9,6 +10,15 @@ function App() {
       <Routes>
         <Route
           path="/"
+          element={
+            <>
+              <LeftPanel />
+              <Home />
+            </>
+          }
+        />
+        <Route
+          path="dashboard"
           element={
             <>
               <LeftPanel />

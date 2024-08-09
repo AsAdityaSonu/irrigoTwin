@@ -11,7 +11,11 @@ function LeftPanel() {
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-white">
           <Link to="/" className="flex items-center ps-2.5 mb-5">
-            <img src="/logo.png" className="h-6 me-3 sm:h-7" alt="AgriTwinTech" />
+            <img
+              src="/logo.png"
+              className="h-6 me-3 sm:h-7"
+              alt="AgriTwinTech"
+            />
             <span className="self-center text-xl font-semibold whitespace-nowrap text-gray-900">
               AgriTwinTech
             </span>
@@ -22,7 +26,7 @@ function LeftPanel() {
                 to="/"
                 className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-200 group"
               >
-                                <svg
+                <svg
                   className="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +36,7 @@ function LeftPanel() {
                   <path d="M3 12l1.41 1.41L12 5.83l7.59 7.58L21 12l-9-9-9 9z" />
                   <path d="M12 7.83L5 14.83V19h4v-3h6v3h4v-4.17l-7-7z" />
                 </svg>
-                <span className="ms-3">Home</span>
+                <span className="flex-1 ms-3">Home</span>
               </Link>
             </li>
             <li>
@@ -54,6 +58,23 @@ function LeftPanel() {
                 <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-700 bg-gray-300 rounded-full">
                   Live
                 </span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-200 group"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
+                </svg>
+                <span className="flex-1 ms-3 whitespace-nowrap">About</span>
               </Link>
             </li>
             <li>
