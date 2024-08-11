@@ -40,7 +40,7 @@ const Clock = () => {
   }, []);
 
   return (
-    <div className="col-span-4 bg-gradient-to-r from-rose-100 to-rose-200 rounded-lg shadow-md p-4 h-full flex items-center justify-center">
+    <div className="col-span-4 bg-gradient-to-r from-yellow-100 to-yellow-200 rounded-lg shadow-md p-4 h-full flex items-center justify-center">
       <div className="text-center">
         <div className="flex justify-center items-center mb-4">
           <svg className="w-24 h-24" viewBox="0 0 100 100">
@@ -52,7 +52,7 @@ const Clock = () => {
               stroke="currentColor"
               strokeWidth="4"
               fill="none"
-              className="text-rose-800"
+              className="text-yellow-800"
             />
 
             {/* Hour Hand */}
@@ -65,7 +65,7 @@ const Clock = () => {
               strokeWidth="4"
               strokeLinecap="round"
               transform={`rotate(${timeAngles.hourAngle} 50 50)`}
-              className="text-rose-800"
+              className="text-yellow-800"
             />
 
             {/* Minute Hand */}
@@ -78,7 +78,7 @@ const Clock = () => {
               strokeWidth="3"
               strokeLinecap="round"
               transform={`rotate(${timeAngles.minuteAngle} 50 50)`}
-              className="text-rose-800"
+              className="text-yellow-800"
             />
 
             {/* Second Hand */}
@@ -91,7 +91,7 @@ const Clock = () => {
               strokeWidth="2"
               strokeLinecap="round"
               transform={`rotate(${timeAngles.secondAngle} 50 50)`}
-              className="text-rose-800"
+              className="text-yellow-800"
             />
 
             {/* Center Dot */}
@@ -100,13 +100,13 @@ const Clock = () => {
               cy="50"
               r="2"
               fill="currentColor"
-              className="text-rose-800"
+              className="text-yellow-800"
             />
           </svg>
         </div>
         <div>
-          <p className="text-4xl font-bold text-rose-800">{date}</p>
-          <p className="text-6xl font-extrabold text-rose-800 mt-2">
+          <p className="text-4xl font-bold text-yellow-800">{date}</p>
+          <p className="text-6xl font-extrabold text-yellow-800 mt-2">
             {currentTime}
           </p>
         </div>

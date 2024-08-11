@@ -42,7 +42,7 @@ function Home() {
   return (
     <div className="min-h-screen min-w-[730px] bg-gray-50 p-4 sm:ml-64">
       <div className="p-4 border-2 border-gray-50 border-e rounded-lg shadow-lg bg-gray-50">
-        <div className="flex items-center justify-center h-96 mb-6 rounded-lg bg-white">
+        <div className="flex items-center justify-center h-96 mb-6 rounded-lg bg-gray-50">
           <div className="grid grid-cols-10 gap-4 w-full h-full">
             {/* Left Box (60%) */}
             <div className="col-span-6 flex flex-col gap-4 mb-6 h-full">
