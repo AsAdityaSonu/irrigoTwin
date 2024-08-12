@@ -5,7 +5,7 @@ import connectDB from './src/db/Database.js';
 // ------------------ Setup ------------------
 dotenv.config();
 const app = express();
-connectDB();
+// connectDB();
 
 // ------------------ Route ------------------
 app.get('/', (req, res) => {
