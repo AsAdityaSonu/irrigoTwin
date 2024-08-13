@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import connectDB from './src/db/Database.js';
+import connectDB from './src/config/Database.js';
 
 // ------------------ Setup ------------------
 dotenv.config();
@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/favicon.ico', (req, res) => {
-  res.status(204).send(); // Ensure you send a response
+  res.status(204).send();
 });
 
 // ------------------ Server ------------------
