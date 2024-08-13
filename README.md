@@ -1,8 +1,8 @@
-# AgriTwinTech
+# irrigoTwin
 
-Welcome to AgriTwinTech! 🌱🚀
+Welcome to irrigoTwin! 🌱🚀
 
-AgriTwinTech is a cutting-edge solution designed to revolutionize hydroponics farming through the power of Digital Twin technology. Our platform integrates real-time data, advanced simulation models, and comprehensive analytics to enhance farm operations, optimize plant health, and maximize yield. Whether you're a seasoned grower or just starting out, AgriTwinTech provides the tools you need for efficient and sustainable farming.
+IrrigoTwin is a cutting-edge solution designed to revolutionize hydroponics farming through the power of Digital Twin technology. Our platform integrates real-time data, advanced simulation models, and comprehensive analytics to enhance farm operations, optimize plant health, and maximize yield. Whether you're a seasoned grower or just starting out, irrigoTwin provides the tools you need for efficient and sustainable farming.
 
 ## Features
 
@@ -20,5 +20,5 @@ AgriTwinTech is a cutting-edge solution designed to revolutionize hydroponics fa
    Clone this repository and follow the setup instructions:
 
    ```bash
-   git clone https://github.com/yourusername/AgriTwinTech.git
-   cd AgriTwinTech
+   git clone https://github.com/yourusername/irrigoTwin.git
+   cd irrigoTwin
