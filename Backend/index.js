@@ -9,12 +9,12 @@ connectDB();
 
 // ------------------ Route ------------------
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send('Hello, Welcome to IRROGO TWIN!');
 });
 
-app.get('/favicon.ico', (req, res)=>{
-  res.status(204);
-})
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).send(); // Ensure you send a response
+});
 
 // ------------------ Server ------------------
 const port = process.env.PORT || 5000;
