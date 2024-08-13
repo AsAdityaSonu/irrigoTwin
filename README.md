@@ -20,5 +20,5 @@ IrrigoTwin is a cutting-edge solution designed to revolutionize hydroponics farm
    Clone this repository and follow the setup instructions:
 
    ```bash
-   git clone https://github.com/yourusername/irrigoTwin.git
+   git clone https://github.com/asadityasonu/irrigoTwin.git
    cd irrigoTwin
