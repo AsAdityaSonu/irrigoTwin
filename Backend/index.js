@@ -9,7 +9,7 @@ connectDB();
 
 // ------------------ Route ------------------
 app.get('/', (req, res) => {
-  res.send('Hello, Welcome to IRROGO TWIN!');
+  res.send('Hello, Welcome to IRRIGO TWIN!');
 });
 
 app.get('/favicon.ico', (req, res) => {
