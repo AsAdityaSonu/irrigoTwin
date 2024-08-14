@@ -16,7 +16,10 @@ function LeftPanel() {
               className="h-6 me-3 sm:h-7"
               alt="AgriTwinTech"
             />
-            <span className="self-center text-xl font-semibold whitespace-nowrap text-gray-900">
+            <span
+              className="self-center text-xl font-semibold whitespace-nowrap text-gray-900"
+              style={{ fontFamily: "Play, sans-serif" }}
+            >
               Irrigo Twin
             </span>
           </NavLink>
