@@ -27,7 +27,6 @@ function Home() {
           .then((data) => {
             setLocation(`${data.name}, ${data.sys.country}`);
             setWeather(data);
-            console.log(data);
           })
           .catch(() => {
             setLocation("Location not found");
@@ -67,7 +66,11 @@ function Home() {
 
                 {/* Right Box (50%) */}
                 <div className="col-span-5 bg-gradient-to-r from-green-100 to-green-200 rounded-lg shadow-md p-4 h-full">
-                  <Temperature weather={weather} />
+                  {weather && weather.main ? (
+                    <Temperature temp={weather.main.temp} />
+                  ) : (
+                    <div>Loading...</div>
+                  )}
                 </div>
               </div>
             </div>
@@ -79,8 +82,18 @@ function Home() {
         </div>
 
         <div>
-          <TempHumidity weather={weather} />
-          <WindAir weather={weather} />
+          {weather && weather.main ? (
+            <>
+              <TempHumidity
+                tempMin={weather.main.temp_min}
+                tempMax={weather.main.temp_max}
+                humidity={weather.main.humidity}
+              />
+              <WindAir weather={weather} />
+            </>
+          ) : (
+            <div>Loading...</div>
+          )}
         </div>
       </div>
     </div>

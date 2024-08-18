@@ -1,7 +1,7 @@
 import React from "react";
 
-function Temperature({ weather }) {
-  const temp = weather ? (weather.main.temp - 273.15).toFixed(2) : 0;
+function Temperature({ temp: propTemp }) {
+  const temp = propTemp ? (propTemp - 273.15).toFixed(2) : 0;
   const maxTemp = 55;
   const fillPercent = Math.min((temp / maxTemp) * 100, 100);
 
@@ -32,7 +32,7 @@ function Temperature({ weather }) {
       </div>
       {/* Text */}
       <p className="text-xl text-green-800 font-bold text-center pt-1">
-        {weather ? `${temp}°C` : "Loading..."}
+        {propTemp ? `${temp}°C` : "Loading..."}
       </p>
     </div>
   );

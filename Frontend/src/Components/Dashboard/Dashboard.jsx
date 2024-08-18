@@ -1,10 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Clock from "../boxComponents/Clock/Clock";
-import Weather from "../boxComponents/Weather/Weather";
+import axios from "axios";
 import Temperature from "../boxComponents/Temperature/Temperature";
-import TempHumidity from "../boxComponents/TempHumidity/TempHumidity";
-import WindAir from "../boxComponents/WindAir/WindAir";
 
 const api = {
   key: "6594d3b53c14c75c84b2f1a80e320763",
@@ -12,9 +10,8 @@ const api = {
 };
 
 function Dashboard() {
+  // API Call
   const [location, setLocation] = useState("Fetching location...");
-  const [weather, setWeather] = useState(null);
-
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -26,8 +23,6 @@ function Dashboard() {
           .then((res) => res.json())
           .then((data) => {
             setLocation(`${data.name}, ${data.sys.country}`);
-            setWeather(data);
-            console.log(data);
           })
           .catch(() => {
             setLocation("Location not found");
@@ -37,6 +32,39 @@ function Dashboard() {
         setLocation("Location access denied");
       }
     );
+  }, []);
+
+  // Backend API Call
+  const [lastUpdated, setLastUpdated] = useState("Fetching data...");
+  const [temperature, setTemperature] = useState("Fetching data...");
+  const [humidity, setHumidity] = useState("Fetching data...");
+  const [soilMoisture, setSoilMoisture] = useState("Fetching data...");
+
+  axios.defaults.withCredentials = true;
+  useEffect(() => {
+    const fetchData = () => {
+      axios
+        .get("https://irrigo-twin-backend-q6u8ae30w-asadityasonus-projects.vercel.app/extract/extractInfo")
+        .then((res) => {
+          const { timeStamp, temperature, humidity, soilMoisture } = res.data;
+          setLastUpdated(new Date(timeStamp).toLocaleString());
+          setTemperature(`${temperature} °C`);
+          setHumidity(`${humidity} %`);
+          setSoilMoisture(`${soilMoisture} %`);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
+
+    // immediately on mount
+    fetchData();
+
+    // 3 minutes
+    const intervalId = setInterval(fetchData, 180000);
+
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
@@ -62,12 +90,28 @@ function Dashboard() {
               <div className="flex-1 grid grid-cols-10 gap-4 w-full">
                 {/* Left Box (50%) */}
                 <div className="col-span-5 w-full bg-gradient-to-r from-orange-100 to-orange-200 rounded-lg shadow-md p-6 h-full flex flex-col items-center justify-center">
-                  <Weather weather={weather} />
+                  <p className="text-xl font-semibold text-gray-700">
+                    Last Updated:
+                  </p>
+                  {lastUpdated && lastUpdated.includes(",") ? (
+                    <div className="mt-2 flex flex-col items-center">
+                      <p className="text-3xl font-bold text-orange-800">
+                        {lastUpdated.split(",")[0]} {/* Date part */}
+                      </p>
+                      <p className="text-lg font-medium text-orange-700 mt-1">
+                        {lastUpdated.split(",")[1].trim()} {/* Time part */}
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-2xl font-medium text-orange-700">
+                      Not available
+                    </p>
+                  )}
                 </div>
 
                 {/* Right Box (50%) */}
                 <div className="col-span-5 bg-gradient-to-r from-green-100 to-green-200 rounded-lg shadow-md p-4 h-full">
-                  <Temperature weather={weather} />
+                  <Temperature temp={parseInt((temperature), 10)+273.15} />
                 </div>
               </div>
             </div>
@@ -79,8 +123,37 @@ function Dashboard() {
         </div>
 
         <div>
-          <TempHumidity weather={weather} />
-          <WindAir weather={weather} />
+          <div className="grid grid-cols-2 gap-6">
+            {/* Humidity */}
+            <div className="flex flex-col items-center justify-evenly p-4 bg-gradient-to-r from-teal-100 to-teal-200 shadow-md rounded-lg w-full h-60">
+              <p className="text-xl font-bold text-teal-900">Humidity</p>
+              <div className="flex items-center justify-center w-20 h-20 mb-2">
+                <img
+                  src="TempHumidity\humidity.png"
+                  alt="Humidity"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <p className="text-2xl font-semibold text-teal-900">
+                {humidity && `${humidity}`}
+              </p>
+            </div>
+
+            {/* Soil Moisture */}
+            <div className="flex flex-col items-center justify-evenly p-4 bg-gradient-to-r from-orange-100 to-orange-200 shadow-md rounded-lg w-full h-60">
+              <p className="text-xl font-bold text-orange-900">Soil Moisture</p>
+              <div className="flex items-center justify-center w-20 h-20 mb-2">
+                <img
+                  src="soilMoisture\soilMoisture.png"
+                  alt="Soil Moisture"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <p className="text-2xl font-semibold text-orange-900">
+                {soilMoisture && `${soilMoisture}`}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

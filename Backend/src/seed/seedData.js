@@ -6,9 +6,9 @@ const generateSeedData = (numEntries) => {
   const seedData = [];
   for (let i = 0; i < numEntries; i++) {
     seedData.push({
-      temperature: Math.floor(Math.random() * 50), 
-      humidity: Math.floor(Math.random() * 100), 
-      soilMoisture: Math.floor(Math.random() * 100), 
+      temperature: Math.floor(Math.random() * 50),
+      humidity: Math.floor(Math.random() * 100),
+      soilMoisture: Math.floor(Math.random() * 100),
     });
   }
   return seedData;
