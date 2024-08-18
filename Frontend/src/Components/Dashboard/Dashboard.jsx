@@ -44,7 +44,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = () => {
       axios
-        .get("https://irrigo-twin-backend-bedjn7ij2-asadityasonus-projects.vercel.app/extract/extractInfo")
+        .get("https://irrigo-twin-backend-git-main-asadityasonus-projects.vercel.app/extract/extractInfo")
         .then((res) => {
           const { timeStamp, temperature, humidity, soilMoisture } = res.data;
           setLastUpdated(new Date(timeStamp).toLocaleString());
