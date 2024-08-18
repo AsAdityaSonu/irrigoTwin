@@ -14,7 +14,7 @@ connectDB();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://irrigo-twin.vercel.app/"],
+    origin: ["https://irrigo-twin-f0xychg2u-asadityasonus-projects.vercel.app"],
     credentials: true,
   })
 );
