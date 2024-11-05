@@ -1,0 +1,6 @@
+Instructions to Run this code:
+1. Download dataset
+2. Run PreProcessing.py to get a final dataset
+3. Run LSTM-Model to check accuracy and other paramenters
+4. Run Scaler to get scaler.pkl file for your dataset
+5. Run Model_Testing.py to test it on custom inputs

@@ -23,3 +23,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ML Model
+ML Model/IoTProcessed_Data.csv
+ML Model/IoTProcessedDataProcessed.csv
+ML Model/lstm_model.h5
+ML Model/scaler.pkl
