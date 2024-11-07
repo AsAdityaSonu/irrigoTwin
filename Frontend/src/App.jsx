@@ -3,6 +3,8 @@ import LeftPanel from "./Components/LeftPanel/LeftPanel";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Home from "./Components/Home/Home";
 import About from "./Components/About/About";
+import Controls from "./Components/Controls/Controls";
+import Profile from "./Components/User/Profile";
 
 function App() {
   return (
@@ -32,6 +34,24 @@ function App() {
             <>
               <LeftPanel />
               <About />
+            </>
+          }
+        />
+        <Route
+          path="controls"
+          element={
+            <>
+              <LeftPanel />
+              <Controls />
+            </>
+          }
+        />
+        <Route
+          path="profile"
+          element={
+            <>
+              <LeftPanel />
+              <Profile />
             </>
           }
         />

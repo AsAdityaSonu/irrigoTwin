@@ -20,7 +20,7 @@ function LeftPanel() {
               className="self-center text-xl font-semibold whitespace-nowrap text-gray-900"
               style={{ fontFamily: "Play, sans-serif" }}
             >
-              Irrigo Twin
+              IrrigoTwin
             </span>
           </NavLink>
           <ul className="space-y-2 font-medium">
@@ -30,13 +30,13 @@ function LeftPanel() {
                 className={({ isActive }) =>
                   `flex items-center p-2 rounded-lg  ${
                     isActive
-                      ? "bg-[#9afcd9] text-grapy-500"
-                      : "text-gray-900 hover:bg-gray-100 group"
+                      ? "bg-[#9afcd9] text-gray-900 group"
+                      : "text-gray-500 hover:bg-gray-100 group"
                   }`
                 }
               >
                 <svg
-                  className="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                  className="w-5 h-5 text-gray-500 transition duration-75"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -54,13 +54,13 @@ function LeftPanel() {
                 className={({ isActive }) =>
                   `flex items-center p-2 rounded-lg  ${
                     isActive
-                      ? "bg-[#9afcd9] text-grapy-500"
-                      : "text-gray-900 hover:bg-gray-100 group"
+                      ? "bg-[#9afcd9] text-gray-900 group"
+                      : "text-gray-500 hover:bg-gray-100 group"
                   }`
                 }
               >
                 <svg
-                  className="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                  className="w-5 h-5 text-gray-500 transition duration-75"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -81,13 +81,13 @@ function LeftPanel() {
                 className={({ isActive }) =>
                   `flex items-center p-2 rounded-lg  ${
                     isActive
-                      ? "bg-[#9afcd9] text-grapy-500"
-                      : "text-gray-900 hover:bg-gray-100 group"
+                      ? "bg-[#9afcd9] text-gray-900 group"
+                      : "text-gray-500 hover:bg-gray-100 group"
                   }`
                 }
               >
                 <svg
-                  className="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                  className="w-5 h-5 text-gray-500 transition duration-75"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -100,43 +100,17 @@ function LeftPanel() {
             </li>
             <li>
               <NavLink
-                to="/users"
+                to="/controls"
                 className={({ isActive }) =>
-                  `flex items-center p-2 rounded-lg  ${
+                  `flex items-center p-2 rounded-lg ${
                     isActive
-                      ? "bg-[#9afcd9] text-grapy-500"
-                      : "text-gray-900 hover:bg-gray-100 group"
+                      ? "bg-[#9afcd9] text-gray-900 group"
+                      : "text-gray-500 hover:bg-gray-100 group"
                   }`
                 }
               >
                 <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 18"
-                >
-                  <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
-                </svg>
-                <span className="flex-1 ms-3 whitespace-nowrap">Users</span>
-                <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium bg-gray-200 rounded-full">
-                  Pro
-                </span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="signin"
-                className={({ isActive }) =>
-                  `flex items-center p-2 rounded-lg  ${
-                    isActive
-                      ? "bg-[#9afcd9] text-grapy-500"
-                      : "text-gray-900 hover:bg-gray-100 group"
-                  }`
-                }
-              >
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                  className="w-5 h-5 text-gray-500 transition duration-75"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -150,34 +124,31 @@ function LeftPanel() {
                     d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
                   />
                 </svg>
-                <span className="flex-1 ms-3 whitespace-nowrap">Sign In</span>
+                <span className="flex-1 ms-3 whitespace-nowrap">Control</span>
               </NavLink>
             </li>
+
             <li>
               <NavLink
-                to="signup"
+                to="/profile"
                 className={({ isActive }) =>
                   `flex items-center p-2 rounded-lg  ${
                     isActive
-                      ? "bg-[#9afcd9] text-grapy-500"
-                      : "text-gray-900 hover:bg-gray-100 group"
+                      ? "bg-[#9afcd9] text-gray-900 group"
+                      : "text-gray-500 hover:bg-gray-100 group"
                   }`
                 }
               >
                 <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                  className="w-5 h-5 text-gray-500 transition duration-75"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
-                  viewBox="0 0 20 20"
+                  viewBox="0 0 20 18"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M5 4.25A2.25 2.25 0 0 1 7.25 2h5.5A2.25 2.25 0 0 1 15 4.25v11.5A2.25 2.25 0 0 1 12.75 18h-5.5A2.25 2.25 0 0 1 5 15.75V4.25ZM8 8.75A.75.75 0 0 0 8 10h4a.75.75 0 0 0 0-1.5H8Zm0 3a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5H8Z"
-                    clipRule="evenodd"
-                  />
+                  <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                 </svg>
-                <span className="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
+                <span className="flex-1 ms-3 whitespace-nowrap">Profile</span>
               </NavLink>
             </li>
           </ul>
