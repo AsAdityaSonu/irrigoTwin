@@ -1,9 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Controls() {
   const [waterFlow, setWaterFlow] = useState(false);
   const [fanStatus, setFanStatus] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [initialWaterFlow, setInitialWaterFlow] = useState(false);
+  const [initialFanStatus, setInitialFanStatus] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get("https://irrigo-twin-backend-git-main-asadityasonus-projects.vercel.app/aws/s3-fetch")
+      .then((res) => {
+        const { waterFlow, fanStatus } = res.data;
+        setWaterFlow(waterFlow);
+        setFanStatus(fanStatus);
+        setInitialWaterFlow(waterFlow);
+        setInitialFanStatus(fanStatus);
+      })
+      .catch((error) => {
+        console.error("Error fetching initial data:", error);
+      });
+  }, []);
 
   const toggleWaterFlow = () => {
     setWaterFlow(!waterFlow);
@@ -15,9 +33,30 @@ function Controls() {
     setIsSaved(false);
   };
 
+  axios.defaults.withCredentials = true;
+
   const handleSave = () => {
+    if (waterFlow === initialWaterFlow && fanStatus === initialFanStatus) {
+      alert("No changes made to save.");
+      return;
+    }
+
     console.log("Saved Settings:", { waterFlow, fanStatus });
-    setIsSaved(true);
+
+    axios
+      .post("http://localhost:3000/aws/s3-set", {
+        waterFlow: waterFlow,
+        fanStatus: fanStatus,
+      })
+      .then((res) => {
+        console.log("Data saved successfully:", res.data);
+        setIsSaved(true);
+        setInitialWaterFlow(waterFlow);
+        setInitialFanStatus(fanStatus);
+      })
+      .catch((error) => {
+        console.error("Error saving data:", error);
+      });
   };
 
   return (

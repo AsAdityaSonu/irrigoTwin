@@ -4,6 +4,7 @@ import connectDB from "./src/config/Database.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { extractInfo } from "./src/routes/extractInfo.js";
+import { awsS3 } from "./src/routes/awsS3.js";
 
 // ------------------ Setup ------------------
 dotenv.config();
@@ -70,6 +71,7 @@ app.get("/favicon.ico", (req, res) => {
 });
 
 app.use("/extract", extractInfo);
+app.use("/aws", awsS3);
 
 // ------------------ Server ------------------
 const port = process.env.PORT || 5000;

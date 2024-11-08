@@ -2,10 +2,13 @@ import React from "react";
 import { useState } from "react";
 
 function Profile() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [age, setAge] = useState("");
-  const [registeredDate, setRegisteredDate] = useState("");
+  const [name, setName] = useState("Bhumika Goyal");
+  const [email, setEmail] = useState("bgoyal_be21@thapar.edu");
+  const [age, setAge] = useState("40");
+  const [registeredDate, setRegisteredDate] = useState("2024-06-20");
+  const [organization, setOrganization] = useState(
+    "Thapar Institute of Engineering and Technology"
+  );
 
   return (
     <div className="min-h-screen min-w-[730px] bg-gray-50  p-4 sm:ml-64">
@@ -38,12 +41,17 @@ function Profile() {
               </p>
               <p className="flex justify-between">
                 <span className="font-bold">Age:</span>
-                <span>
+                {/* <span>
                   {age
                     ? Math.floor((new Date() - new Date(age)) / 31557600000) +
                       " Years"
                     : "Loading..."}
-                </span>{" "}
+                </span>{" "} */}
+                <span>{age ? `${age} years` : "Loading..."}</span>
+              </p>
+              <p className="flex justify-between">
+                <span className="font-bold">Organization:</span>
+                <span>{organization || "Loading..."}</span>{" "}
               </p>
             </div>
           </div>
