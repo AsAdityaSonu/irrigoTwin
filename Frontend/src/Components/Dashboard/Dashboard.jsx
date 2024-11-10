@@ -44,13 +44,13 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = () => {
       axios
-        .get("https://irrigo-twin-backend-git-main-asadityasonus-projects.vercel.app/extract/extractInfo")
-        .then((res) => {
-          const { timeStamp, temperature, humidity, soilMoisture } = res.data;
-          setLastUpdated(new Date(timeStamp).toLocaleString());
+      .get("https://irrigo-twin-backend-git-main-asadityasonus-projects.vercel.app/extract/extractInfo")
+      .then((res) => {
+          const { timestamp, temperature, humidity, soil_moisture } = res.data;
+          setLastUpdated(new Date(timestamp).toLocaleString());
           setTemperature(`${temperature} °C`);
           setHumidity(`${humidity} %`);
-          setSoilMoisture(`${soilMoisture} %`);
+          setSoilMoisture(`${soil_moisture} %`);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);

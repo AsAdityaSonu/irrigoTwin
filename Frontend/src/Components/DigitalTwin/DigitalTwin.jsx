@@ -17,27 +17,23 @@ function DigitalTwin() {
         </p>
 
         <div className="flex justify-center items-center">
-          <Canvas style={{ height: "630px", width: "100%" }}>
+          <Canvas style={{ height: "80vh", width: "100%" }}>
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} />
-            {/* <Tree /> */}
+            {/* --- Objects --- */}
             <Stand />
+            <HydroponicKit />
+
             {/* <HydroponicKit position={[-5, 0, 0]} /> 
             <HydroponicKit position={[5, 0, 0]} />   */}
 
             <OrbitControls />
-
-            {/* Add AxesHelper here */}
             <axesHelper args={[10]} />
           </Canvas>
         </div>
       </div>
     </div>
   );
-}
-
-function Tree() {
-  return <></>;
 }
 
 function Stand() {
@@ -105,42 +101,20 @@ function Stand() {
         <boxGeometry args={[10, 0.3, 0.3]} />
         <meshStandardMaterial color="gray" />
       </mesh>
-
     </>
   );
 }
 
-function HydroponicKit({ position }) {
+function HydroponicKit() {
   return (
     <>
-      {/* Hydroponic Container */}
-      <mesh position={position}>
-        <boxGeometry args={[4, 1, 2]} />
-        <meshStandardMaterial color="lightblue" />
+      <mesh position={[-2.7, 0, 0]}>
+        <boxGeometry args={[2.1, 1.5, 9]} />
+        <meshStandardMaterial color="white" />
       </mesh>
-
-      {/* Water Level Indicator */}
-      <mesh position={[position[0], position[1] + 0.5, position[2]]}>
-        <cylinderGeometry args={[0.1, 0.1, 1, 16]} />
-        <meshStandardMaterial color="blue" />
-      </mesh>
-
-      {/* Plant in Hydroponic Kit */}
-      <mesh position={[position[0], position[1] + 1.2, position[2]]}>
-        <cylinderGeometry args={[0.2, 0.2, 1, 16]} />
-        <meshStandardMaterial color="green" />
-      </mesh>
-
-      {/* Temperature Sensor (for example) */}
-      <mesh position={[position[0] - 1, position[1] + 1.5, position[2]]}>
-        <sphereGeometry args={[0.3, 16, 16]} />
-        <meshStandardMaterial color="red" />
-      </mesh>
-
-      {/* Humidity Sensor (for example) */}
-      <mesh position={[position[0] + 1, position[1] + 1.5, position[2]]}>
-        <sphereGeometry args={[0.3, 16, 16]} />
-        <meshStandardMaterial color="blue" />
+      <mesh position={[2.7, 0, 0]}>
+        <boxGeometry args={[2.1, 1.5, 9]} />
+        <meshStandardMaterial color="white" />
       </mesh>
     </>
   );
