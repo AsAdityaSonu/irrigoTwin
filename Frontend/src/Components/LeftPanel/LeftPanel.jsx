@@ -1,12 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function LeftPanel() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div>
+      {/* Button for toggling sidebar on small screens */}
+      <button
+        onClick={toggleSidebar}
+        className="sm:hidden p-2 m-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-200 text-gray-700 z-50"
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+
+      {/* Sidebar */}
       <aside
         id="logo-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 shadow-lg border-gray-50"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } sm:translate-x-0 shadow-lg border-gray-50`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-white">
@@ -127,6 +157,35 @@ function LeftPanel() {
                 <span className="flex-1 ms-3 whitespace-nowrap">Control</span>
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/digitalTwin"
+                className={({ isActive }) =>
+                  `flex items-center p-2 rounded-lg ${
+                    isActive
+                      ? "bg-[#9afcd9] text-gray-900 group"
+                      : "text-gray-500 hover:bg-gray-100 group"
+                  }`
+                }
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500 transition duration-75"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 18 16"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
+                  />
+                </svg>
+                <span className="flex-1 ms-3 whitespace-nowrap">Digital Twin</span>
+              </NavLink>
+            </li>
 
             <li>
               <NavLink
@@ -154,6 +213,13 @@ function LeftPanel() {
           </ul>
         </div>
       </aside>
+
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 sm:hidden"
+          onClick={toggleSidebar}
+        ></div>
+      )}
     </div>
   );
 }

@@ -5,6 +5,7 @@ import Home from "./Components/Home/Home";
 import About from "./Components/About/About";
 import Controls from "./Components/Controls/Controls";
 import Profile from "./Components/User/Profile";
+import DigitalTwin from "./Components/DigitalTwin/DigitalTwin";
 
 function App() {
   return (
@@ -43,6 +44,15 @@ function App() {
             <>
               <LeftPanel />
               <Controls />
+            </>
+          }
+        />
+        <Route
+          path="digitalTwin"
+          element={
+            <>
+              <LeftPanel />
+              <DigitalTwin />
             </>
           }
         />
