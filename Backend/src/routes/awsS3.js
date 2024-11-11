@@ -1,14 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
-import { Readable } from "stream";
 import { LambdaClient, InvokeCommand } from "@aws-sdk/client-lambda";
 
 const router = express.Router();
 dotenv.config();
-
-let waterFlow = 0;
-let fanStatus = 0;
 
 const LAMBDA_FUNCTION_NAME = process.env.LAMBDA_FUNCTION_NAME;
 
@@ -87,12 +83,19 @@ router.post("/s3-set", async (req, res) => {
     const { waterFlow: newWaterFlow, fanStatus: newFanStatus } = req.body;
     console.log("Received from frontend:", { newWaterFlow, newFanStatus });
 
+    // Fetch the current data from S3
     const currentData = await fetchDataFromS3();
+    
+    if (!Array.isArray(currentData) || currentData.length === 0) {
+      throw new Error("Invalid or empty data retrieved from S3.");
+    }
 
     // Update the waterFlow and fanStatus in the current data
-    waterFlow = newWaterFlow;
-    fanStatus = newFanStatus;
-    const updatedData = { ...currentData[0], Watering_plant_pump_ON: waterFlow, Fan_actuator_ON: fanStatus };
+    const updatedData = { 
+      ...currentData[0], 
+      Watering_plant_pump_ON: newWaterFlow, 
+      Fan_actuator_ON: newFanStatus 
+    };
 
     // Update S3 with new data
     await updateDataInS3([updatedData]);
@@ -103,7 +106,11 @@ router.post("/s3-set", async (req, res) => {
     res.status(200).json({ message: "Data updated and Lambda function triggered successfully" });
   } catch (error) {
     console.error("Error updating data or triggering Lambda:", error);
-    res.status(500).json({ message: "Error updating data in S3 or triggering Lambda", error: error.message, stack: error.stack });
+    res.status(500).json({
+      message: "Error updating data in S3 or triggering Lambda",
+      error: error.message,
+      stack: error.stack
+    });
   }
 });
 
@@ -113,18 +120,20 @@ router.get("/s3-fetch", async (req, res) => {
 
     if (Array.isArray(data) && data.length > 0) {
       const dataObject = data[0];
-      waterFlow = dataObject.Watering_plant_pump_ON ?? 0;
-      fanStatus = dataObject.Fan_actuator_ON ?? 0;
-    } else {
-      waterFlow = 0;
-      fanStatus = 0;
-    }
+      const waterFlow = dataObject.Watering_plant_pump_ON ?? 0;
+      const fanStatus = dataObject.Fan_actuator_ON ?? 0;
 
-    console.log("Data sent to frontend:", { waterFlow, fanStatus });
-    res.status(200).json({ waterFlow, fanStatus });
+      console.log("Data sent to frontend:", { waterFlow, fanStatus });
+      res.status(200).json({ waterFlow, fanStatus });
+    } else {
+      res.status(500).json({ message: "Invalid data format or empty data from S3" });
+    }
   } catch (error) {
     console.error("Error retrieving data:", error);
-    res.status(500).json({ message: "Error retrieving data from S3", error: error.message });
+    res.status(500).json({
+      message: "Error retrieving data from S3",
+      error: error.message
+    });
   }
 });
 
