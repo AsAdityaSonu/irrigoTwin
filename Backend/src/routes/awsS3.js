@@ -101,7 +101,7 @@ router.post("/s3-set", async (req, res) => {
     await updateDataInS3([updatedData]);
 
     // Trigger the Lambda function after updating S3
-    await triggerLambdaFunction();
+    // await triggerLambdaFunction();
 
     res.status(200).json({ message: "Data updated and Lambda function triggered successfully" });
   } catch (error) {
