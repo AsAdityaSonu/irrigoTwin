@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { Readable } from "stream";
+import { LambdaClient, InvokeCommand } from "@aws-sdk/client-lambda";
 
 const router = express.Router();
 dotenv.config();
@@ -9,7 +10,17 @@ dotenv.config();
 let waterFlow = 0;
 let fanStatus = 0;
 
+const LAMBDA_FUNCTION_NAME = process.env.LAMBDA_FUNCTION_NAME;
+
 const s3Client = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+});
+
+const lambdaClient = new LambdaClient({
   region: process.env.AWS_REGION,
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -56,23 +67,43 @@ const updateDataInS3 = async (updatedData) => {
   }
 };
 
+// Function to trigger Lambda
+const triggerLambdaFunction = async () => {
+  try {
+    const command = new InvokeCommand({
+      FunctionName: LAMBDA_FUNCTION_NAME,
+      InvocationType: "Event", // Async invocation
+    });
+    const response = await lambdaClient.send(command);
+    console.log("Lambda function triggered:", response);
+  } catch (error) {
+    console.error("Error triggering Lambda function:", error);
+    throw new Error("Failed to invoke Lambda function");
+  }
+};
+
 router.post("/s3-set", async (req, res) => {
   try {
     const { waterFlow: newWaterFlow, fanStatus: newFanStatus } = req.body;
     console.log("Received from frontend:", { newWaterFlow, newFanStatus });
-    
+
     const currentData = await fetchDataFromS3();
-    
+
+    // Update the waterFlow and fanStatus in the current data
     waterFlow = newWaterFlow;
     fanStatus = newFanStatus;
     const updatedData = { ...currentData[0], Watering_plant_pump_ON: waterFlow, Fan_actuator_ON: fanStatus };
 
+    // Update S3 with new data
     await updateDataInS3([updatedData]);
 
-    res.status(200).json({ message: "Data updated successfully" });
+    // Trigger the Lambda function after updating S3
+    await triggerLambdaFunction();
+
+    res.status(200).json({ message: "Data updated and Lambda function triggered successfully" });
   } catch (error) {
-    console.error("Error updating data:", error);
-    res.status(500).json({ message: "Error updating data in S3", error: error.message });
+    console.error("Error updating data or triggering Lambda:", error);
+    res.status(500).json({ message: "Error updating data in S3 or triggering Lambda", error: error.message, stack: error.stack });
   }
 });
 
