@@ -11,7 +11,7 @@ function Controls() {
   useEffect(() => {
     axios
       .get(
-        "https://irrigo-twin-backend-git-main-asadityasonus-projects.vercel.app/aws/s3-fetch"
+        "https://irrigo-twin-backend.vercel.app/aws/s3-fetch"
       )
       .then((res) => {
         const { waterFlow, fanStatus } = res.data;
@@ -46,7 +46,7 @@ function Controls() {
     console.log("Saved Settings:", { waterFlow, fanStatus });
 
     axios
-      .post("https://irrigo-twin-backend-git-main-asadityasonus-projects.vercel.app/aws/s3-set", {
+      .post("https://irrigo-twin-backend.vercel.app/aws/s3-set", {
         waterFlow: waterFlow,
         fanStatus: fanStatus,
       })
