@@ -1,22 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
 import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
-import { LambdaClient, InvokeCommand } from "@aws-sdk/client-lambda";
+import { Readable } from "stream";
 
 const router = express.Router();
 dotenv.config();
 
-const LAMBDA_FUNCTION_NAME = process.env.LAMBDA_FUNCTION_NAME;
+let waterFlow = 0;
+let fanStatus = 0;
 
 const s3Client = new S3Client({
-  region: process.env.AWS_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  },
-});
-
-const lambdaClient = new LambdaClient({
   region: process.env.AWS_REGION,
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -63,54 +56,23 @@ const updateDataInS3 = async (updatedData) => {
   }
 };
 
-// Function to trigger Lambda
-const triggerLambdaFunction = async () => {
-  try {
-    const command = new InvokeCommand({
-      FunctionName: LAMBDA_FUNCTION_NAME,
-      InvocationType: "Event", // Async invocation
-    });
-    const response = await lambdaClient.send(command);
-    console.log("Lambda function triggered:", response);
-  } catch (error) {
-    console.error("Error triggering Lambda function:", error);
-    throw new Error("Failed to invoke Lambda function");
-  }
-};
-
 router.post("/s3-set", async (req, res) => {
   try {
     const { waterFlow: newWaterFlow, fanStatus: newFanStatus } = req.body;
     console.log("Received from frontend:", { newWaterFlow, newFanStatus });
-
-    // Fetch the current data from S3
+    
     const currentData = await fetchDataFromS3();
     
-    if (!Array.isArray(currentData) || currentData.length === 0) {
-      throw new Error("Invalid or empty data retrieved from S3.");
-    }
+    waterFlow = newWaterFlow;
+    fanStatus = newFanStatus;
+    const updatedData = { ...currentData[0], Watering_plant_pump_ON: waterFlow, Fan_actuator_ON: fanStatus };
 
-    // Update the waterFlow and fanStatus in the current data
-    const updatedData = { 
-      ...currentData[0], 
-      Watering_plant_pump_ON: newWaterFlow, 
-      Fan_actuator_ON: newFanStatus 
-    };
-
-    // Update S3 with new data
     await updateDataInS3([updatedData]);
 
-    // Trigger the Lambda function after updating S3
-    // await triggerLambdaFunction();
-
-    res.status(200).json({ message: "Data updated and Lambda function triggered successfully" });
+    res.status(200).json({ message: "Data updated successfully" });
   } catch (error) {
-    console.error("Error updating data or triggering Lambda:", error);
-    res.status(500).json({
-      message: "Error updating data in S3 or triggering Lambda",
-      error: error.message,
-      stack: error.stack
-    });
+    console.error("Error updating data:", error);
+    res.status(500).json({ message: "Error updating data in S3", error: error.message });
   }
 });
 
@@ -120,20 +82,18 @@ router.get("/s3-fetch", async (req, res) => {
 
     if (Array.isArray(data) && data.length > 0) {
       const dataObject = data[0];
-      const waterFlow = dataObject.Watering_plant_pump_ON ?? 0;
-      const fanStatus = dataObject.Fan_actuator_ON ?? 0;
-
-      console.log("Data sent to frontend:", { waterFlow, fanStatus });
-      res.status(200).json({ waterFlow, fanStatus });
+      waterFlow = dataObject.Watering_plant_pump_ON ?? 0;
+      fanStatus = dataObject.Fan_actuator_ON ?? 0;
     } else {
-      res.status(500).json({ message: "Invalid data format or empty data from S3" });
+      waterFlow = 0;
+      fanStatus = 0;
     }
+
+    console.log("Data sent to frontend:", { waterFlow, fanStatus });
+    res.status(200).json({ waterFlow, fanStatus });
   } catch (error) {
     console.error("Error retrieving data:", error);
-    res.status(500).json({
-      message: "Error retrieving data from S3",
-      error: error.message
-    });
+    res.status(500).json({ message: "Error retrieving data from S3", error: error.message });
   }
 });
 
