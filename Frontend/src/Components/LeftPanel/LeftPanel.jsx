@@ -173,17 +173,36 @@ function LeftPanel() {
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
-                  viewBox="0 0 18 16"
+                  viewBox="0 0 24 24"
                 >
                   <path
                     stroke="currentColor"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"
+                  />
+                  <polyline
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    points="3.27 6.96 12 12.01 20.73 6.96"
+                  />
+                  <line
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    x1="12"
+                    y1="22.08"
+                    x2="12"
+                    y2="12"
                   />
                 </svg>
-                <span className="flex-1 ms-3 whitespace-nowrap">Digital Twin</span>
+                <span className="flex-1 ms-3 whitespace-nowrap">
+                  Digital Twin
+                </span>
               </NavLink>
             </li>
 
